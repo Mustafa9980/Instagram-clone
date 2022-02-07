@@ -29,7 +29,7 @@ Route::post('Follow/{user}', [App\Http\Controllers\FollowsController::class, 'st
 Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('post.index');
 Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create']);
 Route::delete('/p/{post}',[App\Http\Controllers\PostsController::class, 'destroy'])->name('post.destroy');
-Route::post('like/{like}', [App\Http\Controllers\LikeController::class, 'update2'])->name('like.create');
+Route::post('like/{like}', [App\Http\Controllers\LikeController::class, 'create'])->name('like.create');
 Route::get('/explore', [App\Http\Controllers\PostsController::class,'explore'])->name('post.explore'); // Explore Page
 Route::get('/p/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('post.show');
 Route::post('/p', [App\Http\Controllers\PostsController::class, 'store']);

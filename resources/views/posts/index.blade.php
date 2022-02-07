@@ -65,7 +65,7 @@
                         <div class="card-body px-3 py-2">
 
                             <div class="d-flex flex-row">
-                                <form method="POST" action="{{url()->action([App\Http\Controllers\LikeController::class, 'update2'], ['like'=>$post->id])}}">
+                                <form method="POST" action="{{url()->action([App\Http\Controllers\LikeController::class, 'create'], ['like'=>$post->id])}}">
                                     @csrf
                                     @if (true)
                                         <input id="inputid" name="update" type="hidden" value="1">

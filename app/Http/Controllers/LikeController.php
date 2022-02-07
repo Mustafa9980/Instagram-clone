@@ -12,7 +12,7 @@ class LikeController extends Controller
 {
    
 
-    public function update2($id)
+    public function create($id)
     {
 
         $user = Auth::User();
@@ -30,8 +30,10 @@ class LikeController extends Controller
 
             ]);
         }
+        return back();
 
-        return Redirect::to('/');
+        // return Redirect::to('/');
     }
     //
+
 }
