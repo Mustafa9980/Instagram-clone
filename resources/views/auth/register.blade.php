@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.Authris')
 
 @section('content')
-<div class="container">
+    {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -86,5 +86,84 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+
+    <div id="wrapper">
+        <div class="main-content">
+            <div class="header">
+                <img src="/svg/instagram_logo.png" />
+            </div>
+            <div class="l-part">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+
+                    <label for="name">{{ __('Name') }}</label>
+
+
+                    <input id="name" type="text" class="input-1 @error('name') is-invalid @enderror" name="name"
+                        value="{{ old('name') }}" autocomplete="name" autofocus>
+
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+
+                    <label for="email">{{ __('E-Mail Address') }}</label>
+
+                    <input id="email" type="email" class="input-2 @error('email') is-invalid @enderror" name="email"
+                        value="{{ old('email') }}" autocomplete="email">
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <label for="username">UsarName</label>
+
+                    <input id="username" type="username" class="input-3 @error('username') is-invalid @enderror"
+                        name="username" value="{{ old('username') }}" autocomplete="email">
+
+                    @error('username')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <label for="password">{{ __('Password') }}</label>
+
+                    <input id="password" type="password" class="input-4 @error('password') is-invalid @enderror"
+                        name="password" autocomplete="new-password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <label for="password-confirm">{{ __('Confirm Password') }}</label>
+
+                    <input id="password-confirm" type="password" class="input-5" name="password_confirmation"
+                        autocomplete="new-password">
+
+
+
+
+                    <button type="submit" class="btn">
+                        {{ __('Register') }}
+                    </button>
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 @endsection

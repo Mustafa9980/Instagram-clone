@@ -21,7 +21,7 @@
                                 <a href="/profile/{{ $post->user->id }}" style="width: 32px; height: 32px;">
                                     <img src="{{ asset($post->user->profile->profileImage()) }}" class="rounded-circle w-100">
                                 </a>
-                                <a href="/profile/{{ $post->user->id }}" class="my-0 ml-3 text-dark text-decoration-none">
+                                <a href="/profile/{{ $post->user->id }}" class="my-0 ml-3 text-dark text-decoration-none px-1">
                                     {{ $post->user->name }}
                                 </a>
                             </div>
@@ -32,6 +32,7 @@
                                 </button>
 
                                 <!-- Dots Modal -->
+                                
                                 <div class="modal fade" id="post{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                                     <div class="modal-content">
@@ -208,7 +209,7 @@
                         {{-- <a href="/profile/{{Auth::user()->username}}" style="width: 56px; height: 56px;"> --}}
                             <img src="{{ asset(Auth::user()->profile->profileImage()) }}" class="rounded-circle w-100">
                         </a>
-                        <div class='d-flex flex-column pl-3'>
+                        <div class='d-flex flex-column pl-3 px-2'>
                             <a href="/profile/{{Auth::user()->id}}" class='h6 m-0 text-dark text-decoration-none' >
                                 <strong>{{ auth()->user()->username }}</strong>
                             </a>
@@ -231,15 +232,15 @@
                                     <a href="/profile/{{$sugg_user->id}}" style="width: 32px; height: 32px;">
                                         <img src="{{ asset($sugg_user->profile->profileImage()) }}" class="rounded-circle w-100">
                                     </a>
-                                    <div class='d-flex flex-column pl-3'>
+                                    <div class='d-flex flex-column pl-3 pt-3 px-1'>
                                         <a href="/profile/{{$sugg_user->id}}" class='h6 m-0 text-dark text-decoration-none' >
                                             <strong>{{ $sugg_user->name}}</strong>
                                         </a>
                                         <small class="text-muted">New to Instagram </small>
                                     </div>
-                                    <a href="#" class='ml-auto text-info text-decoration-none'>
+                                   <button > <a href="#" class='ml-auto pb-3 px-3  text-info text-decoration-none'>
                                         Follow
-                                    </a>
+                                    </a></button>
                                 </div>
                             </div>
                         @endforeach

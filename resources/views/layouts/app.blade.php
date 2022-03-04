@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,16 +22,21 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cont.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/autnt.css') }}" rel="stylesheet"> --}}
+
 
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div><img src="/svg/instagram_logo.png" style="height: 50px;" class="pr-3"></div>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -38,15 +44,21 @@
                     <form action="/search" method="POST" role="search" class="m-auto d-inline w-80">
                         @csrf
                         <div class="input-group">
-                            <input class="form-control" name="search" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="border-color: #ced4da"><i class="fas fa-search"></i></button>
+                            <input class="form-control" name="search" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"
+                                style="border-color: #ced4da"><i class="fas fa-search"></i></button>
                         </div>
+
+
+
                     </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        
+
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -60,27 +72,60 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item px-2 {{ Route::is('post.index') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('/') }}">
+                                    <i class="fas fa-home fa-2x"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item px-2 {{ Route::is('post.explore') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('/explore') }}">
+                                    <i class="far fa-compass fa-2x"></i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item pl-2">
+                                <a href="/profile/{{ Auth::user()->id }}" class="nav-link"
+                                    style="width: 42px; height: 22px; padding-top: 6px;">
+                                    <img src="{{ asset(Auth::user()->profile->ProfileImage()) }}"
+                                        class="rounded-circle w-100">
+                                    {{-- <i class="far fa-user fa-2x"></i> --}}
+                                </a>
+                            </li>
+
+
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{-- {{ Auth::user()->username }} --}}
+
                                 </a>
 
-                                {{-- <li class="nav-item px-2 {{ Route::is('post.explore') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ url('/explore') }}">
-                                        <i class="far fa-compass fa-2x"></i>explore
-                                    </a>
-                                </li> --}}
-
-                                
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+
+                                    @can('update', Auth::user()->profile)
+                                        <a class="dropdown-item" href="/p/create" role="button">
+                                            Add New Post
+                                        </a>
+                                    @endcan
+
+                                    @can('update', Auth::user()->profile)
+                                        <a class="dropdown-item" href="/stories/create" role="button">
+                                            Add New Story
+                                        </a>
+                                    @endcan
+
+
+
+
+
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -96,4 +141,5 @@
         </main>
     </div>
 </body>
+
 </html>

@@ -1,4 +1,87 @@
-@extends('layouts.app')
+@extends('layouts.Authris')
+
+@section('content')
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+
+<div id="wrapper">
+  <div class="main-content">
+    <div class="header">
+      <img src="/svg/instagram_logo.png" />
+    </div>
+    <div class="l-part">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            
+                <label for="email" >{{ __('E-Mail Address') }}</label>
+
+                
+                    <input id="email" type="email" class="input-1 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus>
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                
+            
+
+            
+                <label for="password" >{{ __('Password') }}</label>
+
+        
+                    <input id="password" type="password" class="input-2 @error('password') is-invalid @enderror" name="password"  autocomplete="current-password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                
+            
+{{-- 
+            <div class="row mb-3">
+                <div class="col-md-6 offset-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                        <label class="form-check-label" for="remember">
+                            {{ __('Remember Me') }}
+                        </label>
+                    </div>
+                </div>
+            </div> --}}
+
+            
+                
+                    <button type="submit" class="btn">
+                        {{ __('Login') }}
+                    </button>
+
+                    {{-- @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif --}}
+            
+            
+        </form>
+    
+    </div>
+  </div>
+  <div class="sub-content">
+    <div class="s-part">
+      Don't have an account?<a href="{{ route('register') }}">Sign up</a>
+    </div>
+  </div>
+</div>
+
+
+
+@endsection
+
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -71,3 +154,4 @@
     </div>
 </div>
 @endsection
+ --}}
